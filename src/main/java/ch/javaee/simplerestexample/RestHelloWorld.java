@@ -1,7 +1,10 @@
 package ch.javaee.simplerestexample;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.ext.Provider;
 
 /**
@@ -16,5 +19,17 @@ public class RestHelloWorld {
     @GET // answer only to a http get request
     public String hello(){  // return a simple string (text/plain by default)
         return "Hello World"; // string to be returned
+    }
+    
+    @Path("helloJSON")
+    @GET
+    @Produces("application/json")
+    public List<String> helloJSONList(){
+        List<String> jsonList = new ArrayList<String>();
+        jsonList.add("Hello World");
+        jsonList.add("Bonjour monde");
+        
+        return jsonList;
+                
     }
 }
